@@ -1,11 +1,10 @@
 #include<iostream>
-#include"object/object.h"
+#include "game/game.h"
 
 int main() {
-
-	OBJECT object;
-	object.getX();
-
-	std::cout << "1";
+	GAME game;
+	game.init();
+	game.run();
+	game.end();
 	return 0;
 }
