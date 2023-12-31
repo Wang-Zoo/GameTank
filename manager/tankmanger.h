@@ -6,11 +6,13 @@
 struct TANK_MANAGER
 {
 private:
-	std::vector<TANK> verctor;
+	std::vector<TANK> enemyVector;
+	std::vector<OUR_SIDE_TANK> ourSideVector;
 
 
 public:
-	void add();
+	void init();
+	void add(bool enemy);
 	void run();
 	void clear();
 

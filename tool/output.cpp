@@ -144,10 +144,13 @@ void Output::End()
 	//先清屏
 	system("cls");
 	std::cout << ClientStr;
+	Sleep(30);
 }
 
 void Output::SetClientWH(int w, int h)
 {
+	//     0 1 2 3 4
+	SetTs("  ‖●＝〓");
 	//数据合法校验
 	if (w < 1 || h < 1)
 	{

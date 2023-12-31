@@ -35,3 +35,17 @@ void OBJECT::setSize(int width, int height)
 	this->width = width;
 	this->height = height;
 }
+
+bool OBJECT::collision(OBJECT other)
+{
+	bool isLeftFlag = this->x + this->width <= other.x;
+	bool isRightFlag = this->x >= other.x + other.width;
+	bool isUpFlag = this->y + this->height <= other.y;
+	bool isBottomFlag = this->y >=other.y +other.height;
+	if (isLeftFlag || isRightFlag || isUpFlag || isBottomFlag) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}

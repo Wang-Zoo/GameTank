@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include"Windows.h"
 
 struct PIC
 {
@@ -25,13 +26,13 @@ private:
 	int cy;
 	char* ClientStr = 0;	//ÏÔÊ¾ÇøÓò
 	const char* ts = 0;		//Í¼ËØ¼ÇÂ¼
+	void SetTs(const char* ts);
 public:
 	void Begin();
 	void DrawPic(const char* key, int x, int y);
 	void End();
 
 	void SetClientWH(int w, int h);
-	void SetTs(const char* ts);
 	bool AddPic(const char* key, PIC pic);
 	void Clear();
 	void SetClientPos(int x, int y);
