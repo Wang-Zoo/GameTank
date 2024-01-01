@@ -23,6 +23,9 @@
     <Filter Include="header">
       <UniqueIdentifier>{fd8bd8a9-4dad-4017-96e0-d9bbf4f91859}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\config">
+      <UniqueIdentifier>{009ea54b-b207-45b6-a868-8dfa9ea8c6b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -41,8 +44,18 @@
     <ClCompile Include="manager\tankmanger.cpp">
       <Filter>src\manager</Filter>
     </ClCompile>
-    <ClCompile Include="object\barries.cpp" />
-    <ClCompile Include="manager\barriesmanager.cpp" />
+    <ClCompile Include="object\barries.cpp">
+      <Filter>src\object</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\barriesmanager.cpp">
+      <Filter>src\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="tool\tool.cpp">
+      <Filter>src\tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\base.h">
@@ -60,14 +73,20 @@
     <ClInclude Include="manager\tankmanger.h">
       <Filter>src\manager</Filter>
     </ClInclude>
-    <ClInclude Include="config\config.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="object\barries.h">
-      <Filter>src</Filter>
+      <Filter>src\object</Filter>
     </ClInclude>
     <ClInclude Include="manager\barriesmanager.h">
-      <Filter>src</Filter>
+      <Filter>src\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\scene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="config\config.h">
+      <Filter>src\config</Filter>
+    </ClInclude>
+    <ClInclude Include="tool\tool.h">
+      <Filter>src\tool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

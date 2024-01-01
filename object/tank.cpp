@@ -1,16 +1,15 @@
 #include"tank.h"
 #include"tool/output.h"
-#include"manager/barriesmanager.h"
 
-void TANK::init()
+void TANK::init(int x,int y)
 {
-	object.setX(0);
-	object.setY(0);
+	object.setX(x);
+	object.setY(y);
 	object.setSize(TANK_WIDTH, TANK_HEIGHT);
 	dir = TANK_DIR_UP;
 }
 
-void TANK::setDir(int dir)
+bool TANK::setDir(int dir)
 {
 	this->dir = dir;
 	int x = this->object.getX();
@@ -21,38 +20,42 @@ void TANK::setDir(int dir)
 		y--;
 		if (y < 0) {
 			y = 0;
+			return false;
 		}
 	}
 	else if (dir == TANK_DIR_DOWN) {
 		y++;
 		if (y+height > MAP_HEIGHT) {
 			y = MAP_HEIGHT - height;
+			return false;
 		}
 	}
 	else if (dir == TANK_DIR_LEFT) {
 		x--;
 		if (x < 0) {
 			x = 0;
+			return false;
 		}
 	}
 	else if (dir == TANK_DIR_RIGHT) {
 		x++;
 		if (x + width > MAP_WIDTH) {
 			x = MAP_WIDTH - width ;
+			return false;
 		}
 	}
-	OBJECT tempObject;
-	tempObject.setX(x);
-	tempObject.setY(y);
-	tempObject.setSize(this->object.getWidth(), this->object.getHeight());
-	if (!gBarriesManager.collision(tempObject)) {
-		this->object.setX(x);
-		this->object.setY(y);
-	}
+	this->object.setX(x);
+	this->object.setY(y);
+	return true;
+}
+
+int TANK::getDir()
+{
+	return dir;
 }
 
 void TANK::run()
-{
+{ 
 	g_op.DrawPic(picKey[dir], object.getX(), object.getY());
 }
 
@@ -63,10 +66,21 @@ OBJECT* TANK::getObject()
 
 void OUR_SIDE_TANK::init()
 {
-	this->tank.init();
+	this->tank.init(0,0);
 }
 
 void OUR_SIDE_TANK::run()
+{
+	
+	this->tank.run();
+}
+
+int OUR_SIDE_TANK::getDir()
+{
+	return tank.getDir();
+}
+
+void OUR_SIDE_TANK::keyboardMove()
 {
 	if (GetAsyncKeyState('W') & 0x8000) {
 		this->tank.setDir(TANK_DIR_UP);
@@ -80,7 +94,6 @@ void OUR_SIDE_TANK::run()
 	else if (GetAsyncKeyState('D') & 0x8000) {
 		this->tank.setDir(TANK_DIR_RIGHT);
 	}
-	this->tank.run();
 }
 
 OBJECT* OUR_SIDE_TANK::getObject()

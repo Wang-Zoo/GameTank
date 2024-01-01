@@ -20,8 +20,7 @@ void GAME::init()
 	mapHeight = MAP_HEIGHT;
 	g_op.SetClientWH(mapWidth, mapHeight);
 	g_op.SetClientPos(0, 0);
-	gTankManager.init();
-	gBarriesManager.init();
+	sceneOne.init();
 }
 
 void GAME::run()
@@ -29,14 +28,12 @@ void GAME::run()
 	while (true)
 	{
 		g_op.Begin();
-		gTankManager.run();
-		gBarriesManager.run();
+		sceneOne.baseScene.run();
 		g_op.End();
 	}
 }
 
 void GAME::end()
 {
-	gTankManager.clear();
-	gBarriesManager.clear();
+	sceneOne.baseScene.end();
 }

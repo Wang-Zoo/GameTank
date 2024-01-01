@@ -135,6 +135,8 @@
     <ClCompile Include="object\barries.cpp" />
     <ClCompile Include="object\base.cpp" />
     <ClCompile Include="object\tank.cpp" />
+    <ClCompile Include="scene\scene.cpp" />
+    <ClCompile Include="tool\tool.cpp" />
     <ClCompile Include="tool\output.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +147,8 @@
     <ClInclude Include="object\barries.h" />
     <ClInclude Include="object\base.h" />
     <ClInclude Include="object\tank.h" />
+    <ClInclude Include="scene\scene.h" />
+    <ClInclude Include="tool\tool.h" />
     <ClInclude Include="tool\output.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
