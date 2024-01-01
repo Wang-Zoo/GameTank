@@ -1,7 +1,6 @@
 #pragma once
 #include"base.h"
 #include"config/config.h"
-#include"manager/barriesmanager.h"
 
 struct TANK {
 private:

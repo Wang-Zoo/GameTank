@@ -56,6 +56,12 @@
     <ClCompile Include="tool\tool.cpp">
       <Filter>src\tool</Filter>
     </ClCompile>
+    <ClCompile Include="object\bullet.cpp">
+      <Filter>src\object</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\bulletmanager.cpp">
+      <Filter>src\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\base.h">
@@ -87,6 +93,12 @@
     </ClInclude>
     <ClInclude Include="tool\tool.h">
       <Filter>src\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="object\bullet.h">
+      <Filter>src\object</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\bulletmanager.h">
+      <Filter>src\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

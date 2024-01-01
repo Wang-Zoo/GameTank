@@ -17,3 +17,4 @@
 #define TANK_PIC_RIGHT "TANK_RIGHT"
 
 #define BARRIES_BRICK "B_BRICK" //×©¿é£¬¿É´Ý»Ù
+#define BULLET_TYPE "BULLET" //×Óµ¯

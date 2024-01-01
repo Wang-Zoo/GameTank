@@ -4,18 +4,21 @@ void SCENE::run()
 {
 	tm.run();
 	bm.run();
+	bum.run();
 }
 
 void SCENE::init()
 {
 	bm.init();
-	tm.init(&bm);
+	bum.init();
+	tm.init(&bm,&bum);
 }
 
 void SCENE::end()
 {
 	tm.clear();
 	bm.clear();
+	bum.clear();
 }
 
 void SCENE_ONE::init()

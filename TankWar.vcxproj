@@ -131,9 +131,11 @@
     <ClCompile Include="game\game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager\barriesmanager.cpp" />
+    <ClCompile Include="manager\bulletmanager.cpp" />
     <ClCompile Include="manager\tankmanger.cpp" />
     <ClCompile Include="object\barries.cpp" />
     <ClCompile Include="object\base.cpp" />
+    <ClCompile Include="object\bullet.cpp" />
     <ClCompile Include="object\tank.cpp" />
     <ClCompile Include="scene\scene.cpp" />
     <ClCompile Include="tool\tool.cpp" />
@@ -143,9 +145,11 @@
     <ClInclude Include="config\config.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="manager\barriesmanager.h" />
+    <ClInclude Include="manager\bulletmanager.h" />
     <ClInclude Include="manager\tankmanger.h" />
     <ClInclude Include="object\barries.h" />
     <ClInclude Include="object\base.h" />
+    <ClInclude Include="object\bullet.h" />
     <ClInclude Include="object\tank.h" />
     <ClInclude Include="scene\scene.h" />
     <ClInclude Include="tool\tool.h" />

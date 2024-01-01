@@ -61,9 +61,10 @@ bool TANK_MANAGER::collisionTank(OBJECT* object, int dir)
 	return false;
 }
 
-void TANK_MANAGER::init(BARRIES_MANAGER* bm)
+void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 {
 	this->bm = bm;
+	this->bulletm = bum;
 	{
 		PIC pic;
 		char buf[TANK_WIDTH * TANK_HEIGHT] = {
@@ -105,10 +106,10 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm)
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
 	add(false,0,0);
-	add(true,3,0);
-	add(true,9,0);
-	add(true,15,0);
-	add(true,18,0);
+	//add(true,3,0);
+	//add(true,9,0);
+	//add(true,15,0);
+	//add(true,18,0);
 
 }
 
@@ -137,6 +138,14 @@ int TANK_MANAGER::aiMove(TANK* tank)
 	return tempDir;
 }
 
+void TANK_MANAGER::addBullet(OBJECT object,int dir)
+{
+	if (GetAsyncKeyState('K') & 0x8000) {
+		object.getX();
+		bulletm->add(object.getX(), object.getY(), dir);
+	}
+}
+
 void TANK_MANAGER::run()
 {
 	std::vector<TANK>::iterator enemyIt = this->enemyVector.begin();
@@ -151,6 +160,7 @@ void TANK_MANAGER::run()
 	for (; ourSizeIt != this->ourSideVector.end();)
 	{
 		(*ourSizeIt).keyboardMove();
+		addBullet((*(*ourSizeIt).getObject()), (*ourSizeIt).getDir());
 		collisionBarries((*ourSizeIt).getObject(), (*ourSizeIt).getDir());
 		(*ourSizeIt).run();
 		ourSizeIt++;
