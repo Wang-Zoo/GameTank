@@ -13,5 +13,5 @@ public:
 	void setX(int x);
 	void setY(int y);
 	void setSize(int width, int height);
-	bool collision(OBJECT *other,int dir);
+	bool collision(OBJECT *other,int dir,bool adjust=true);
 };

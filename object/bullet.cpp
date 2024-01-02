@@ -32,3 +32,21 @@ void BULLET::run()
 
 	g_op.DrawPic(picKey, this->object.getX(),this->object.getY());
 }
+
+bool BULLET::isOverMap()
+{
+	int x = object.getX();
+	int y = object.getX();
+	int width = object.getWidth();
+	int height = object.getHeight();
+	
+	if (x <= 0 || y <= 0 || x >= MAP_WIDTH - width || y >= MAP_HEIGHT - height) {
+		return true;
+	}
+	return false;
+}
+
+OBJECT BULLET::getObject()
+{
+	return object;
+}

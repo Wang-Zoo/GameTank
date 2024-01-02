@@ -11,6 +11,7 @@ public:
 	void add(int x,int y,int dir);
 	void run();
 	void clear();
+	bool collision(OBJECT* other, int dir);
 
 };
 

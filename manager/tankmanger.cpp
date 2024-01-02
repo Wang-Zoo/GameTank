@@ -18,12 +18,14 @@ bool TANK_MANAGER::collisionBarries(TANK* tank, int dir)
 
 bool TANK_MANAGER::collisionBarries(OBJECT* tank, int dir)
 {
+	bulletm->collision(tank,dir);
 	if (bm->collision(tank, dir)) {
 		return true;
 	}
 	if (collisionTank(tank, dir)) {
 		return true;
 	}
+	
 	return false;
 }
 
@@ -110,7 +112,7 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 	//add(true,3,0);
 	//add(true,9,0);
 	//add(true,15,0);
-	//add(true,18,0);
+	add(true,18,0);
 
 }
 
@@ -142,7 +144,6 @@ int TANK_MANAGER::aiMove(TANK* tank)
 void TANK_MANAGER::addBullet(OBJECT object,int dir)
 {
 	if (GetAsyncKeyState('K') & 0x8000) {
-
 		unsigned long long curTime = GetTickCount64();
 		unsigned long long offset = (curTime - lastTime)/1;
 		if (offset>500) {

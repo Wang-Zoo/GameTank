@@ -37,7 +37,7 @@ void OBJECT::setSize(int width, int height)
 	this->height = height;
 }
 
-bool OBJECT::collision(OBJECT *other,int dir)
+bool OBJECT::collision(OBJECT *other,int dir,bool adjust)
 {
 	OBJECT& tempObject = (*other);
 	bool isLeftFlag = tempObject.x + tempObject.width <= this->x;
@@ -48,20 +48,22 @@ bool OBJECT::collision(OBJECT *other,int dir)
 		return false;
 	}
 	else {
-		switch (dir)
-		{
-		case TANK_DIR_DOWN:
-			tempObject.setY(this->y - tempObject.height);
-			break;
-		case TANK_DIR_UP:
-			tempObject.setY(this->y + this->height);
-			break;
-		case TANK_DIR_RIGHT:
-			tempObject.setX(this->x - tempObject.getWidth());
-			break;
-		case TANK_DIR_LEFT:
-			tempObject.setX(this->x + this->width);
-			break;
+		if (adjust) {
+			switch (dir)
+			{
+			case TANK_DIR_DOWN:
+				tempObject.setY(this->y - tempObject.height);
+				break;
+			case TANK_DIR_UP:
+				tempObject.setY(this->y + this->height);
+				break;
+			case TANK_DIR_RIGHT:
+				tempObject.setX(this->x - tempObject.getWidth());
+				break;
+			case TANK_DIR_LEFT:
+				tempObject.setX(this->x + this->width);
+				break;
+			}
 		}
 		return true;
 	}

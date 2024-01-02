@@ -43,12 +43,34 @@ void BULLET_MANAGER::run()
 	std::vector<BULLET>::iterator it = this->vector.begin();
 	for (; it != this->vector.end();)
 	{
-		(*it).run();
-		it++;
+		if ((*it).isOverMap()) {
+			it = vector.erase(it);
+		}
+		else {
+			(*it).run();
+			it++;
+		}
 	}
 }
 
 void BULLET_MANAGER::clear()
 {
 	this->vector.clear();
+}
+
+bool BULLET_MANAGER::collision(OBJECT* other, int dir)
+{
+	std::vector<BULLET>::iterator it = this->vector.begin();
+	for (; it != this->vector.end();)
+	{
+		OBJECT targetObject = (*it).getObject();
+		if (targetObject.collision(other, dir,false)) {
+			it = vector.erase(it);
+		}
+		else {
+			it++;
+		}
+	}
+	return false;
+
 }
