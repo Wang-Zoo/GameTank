@@ -2,6 +2,7 @@
 #include"tool/output.h"
 #include"config/config.h"
 #include"tool/tool.h"
+#include"Windows.h"
 
 bool TANK_MANAGER::collisionBarries(TANK* tank, int dir)
 {
@@ -141,8 +142,14 @@ int TANK_MANAGER::aiMove(TANK* tank)
 void TANK_MANAGER::addBullet(OBJECT object,int dir)
 {
 	if (GetAsyncKeyState('K') & 0x8000) {
-		object.getX();
-		bulletm->add(object.getX(), object.getY(), dir);
+
+		unsigned long long curTime = GetTickCount64();
+		unsigned long long offset = (curTime - lastTime)/1;
+		if (offset>500) {
+			object.getX();
+			bulletm->add(object.getX(), object.getY(), dir);
+			lastTime = curTime;
+		}
 	}
 }
 
