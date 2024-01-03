@@ -54,7 +54,7 @@ bool BULLET::isOverMap()
 	int width = object.getWidth();
 	int height = object.getHeight();
 	
-	if (x <= 0 || y <= 0 || x >= MAP_WIDTH - width || y >= MAP_HEIGHT - height) {
+	if (x < 0 || y < 0 || x > MAP_WIDTH - width || y > MAP_HEIGHT - height) {
 		return true;
 	}
 	return false;

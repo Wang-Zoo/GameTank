@@ -107,11 +107,11 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 		pic.SetPic(buf, TANK_WIDTH, TANK_HEIGHT);
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
-	add(false);
-	//add(true,3,0);
-	//add(true,9,0);
-	//add(true,15,0);
-	//add(true,33,0);
+	add(false); 
+	add(true,3,0);
+	add(true,9,0);
+	add(true,15,0);
+	add(true,33,0);
 
 }
 
