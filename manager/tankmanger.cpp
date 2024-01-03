@@ -4,21 +4,21 @@
 #include"tool/tool.h"
 #include"Windows.h"
 
-bool TANK_MANAGER::collisionBarries(TANK* tank, int dir)
+bool TANK_MANAGER::collisionBarries(TANK* tank, int dir, bool isEnemy)
 {
 	TANK& tempTank = *tank;
 	if (!tempTank.setDir(dir)) {
 		return true;
 	}
-	if (collisionBarries(tempTank.getObject(), dir)) {
+	if (collisionBarries(tempTank.getObject(), dir,isEnemy)) {
 		return true;
 	}
 	return false;
 }
 
-bool TANK_MANAGER::collisionBarries(OBJECT* tank, int dir)
+bool TANK_MANAGER::collisionBarries(OBJECT* tank, int dir,bool isEnemy)
 {
-	bulletm->collision(tank,dir);
+	bulletm->collision(tank,dir,isEnemy);
 	if (bm->collision(tank, dir)) {
 		return true;
 	}
@@ -134,18 +134,18 @@ int TANK_MANAGER::aiMove(TANK* tank)
 {
 	int tempDir = (*tank).getDir();
 	int count = 0;
-	while (collisionBarries(tank, tempDir)&&count<5) {
+	while (collisionBarries(tank, tempDir,true)&&count<5) {
 		tempDir = RANDOM(TANK_DIR_UP, TANK_DIR_RIGHT);
 		count++;
 	}
 	return tempDir;
 }
 
-void TANK_MANAGER::addBullet(OBJECT object,int dir,bool canAttack)
+void TANK_MANAGER::addBullet(OBJECT object,int dir,bool canAttack,bool isEnemy)
 {
 	if (canAttack) {
 		object.getX();
-		bulletm->add(object.getX(), object.getY(), dir);
+		bulletm->add(object.getX(), object.getY(), dir,isEnemy);
 	}
 }
 
@@ -156,7 +156,7 @@ void TANK_MANAGER::run()
 	{
 		TANK& tempTank = *enemyIt;
 		aiMove(&tempTank);
-		addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack());
+		addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack(),true);
 		tempTank.run();
 		enemyIt++;
 	}
@@ -167,8 +167,8 @@ void TANK_MANAGER::run()
 		OUR_SIDE_TANK& tempTank = *ourSizeIt;
 		tempTank.keyboardMove();
 		if (GetAsyncKeyState('K') & 0x8000)
-			addBullet((*tempTank.getObject()), tempTank.getDir(),tempTank.canAttack());
-		collisionBarries(tempTank.getObject(), tempTank.getDir());
+			addBullet((*tempTank.getObject()), tempTank.getDir(),tempTank.canAttack(),false);
+		collisionBarries(tempTank.getObject(), tempTank.getDir(),false);
 		tempTank.run();
 		ourSizeIt++;
 	}

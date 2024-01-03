@@ -2,35 +2,39 @@
 #include"tool/output.h"
 #include"config/config.h"
 
-void BULLET::init(int x, int y, int dir)
+void BULLET::init(int x, int y, int dir,bool isEnemy)
 {
 	this->dir = dir;
 	this->object.setX(x);
 	this->object.setY(y);
 	this->object.setSize(1, 1);
-	this->picKey = BULLET_TYPE;
+	this->isEnemy = isEnemy;
 }
 
 void BULLET::run()
 {
-	int x =  this->object.getX();
-	int y =  this->object.getY();
+	g_op.DrawPic(isEnemy?ENEMY_BULLET_TYPE:OUR_BULLET_TYPE, this->object.getX(),this->object.getY());
+}
+
+void BULLET::move()
+{
+	int x = this->object.getX();
+	int y = this->object.getY();
 	if (dir == TANK_DIR_UP) {
-		y-= BULLET_STEP;
+		y--;
 	}
 	else if (dir == TANK_DIR_DOWN) {
-		y+= BULLET_STEP;
+		y++;
 	}
 	else if (dir == TANK_DIR_LEFT) {
-		x-= BULLET_STEP;
+		x--;
 	}
 	else if (dir == TANK_DIR_RIGHT) {
-		x+= BULLET_STEP;
+		x++;
 	}
 	this->object.setX(x);
 	this->object.setY(y);
 
-	g_op.DrawPic(picKey, this->object.getX(),this->object.getY());
 }
 
 bool BULLET::isOverMap()
@@ -49,6 +53,11 @@ bool BULLET::isOverMap()
 int BULLET::getDir()
 {
 	return dir;
+}
+
+bool BULLET::isEnemyBullet()
+{
+	return isEnemy;
 }
 
 OBJECT BULLET::getObject()

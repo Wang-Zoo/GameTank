@@ -6,12 +6,14 @@ struct BULLET
 private:
 	OBJECT object;
 	int dir;
-	const char* picKey = 0;
 	bool alive = true;
+	bool isEnemy = true;
 public:
-	void init(int x,int y,int dir);
+	void init(int x,int y,int dir,bool isEnemy);
 	void run();
+	void move();
 	bool isOverMap();
 	int getDir();
+	bool isEnemyBullet();
 	OBJECT getObject();
 };

@@ -10,10 +10,10 @@ private:
 
 public:
 	void init(BARRIES_MANAGER* bm);
-	void add(int x,int y,int dir);
+	void add(int x,int y,int dir,bool isEnemy);
 	void run();
 	void clear();
-	bool collision(OBJECT* other, int dir);
+	bool collision(OBJECT* other, int dir, bool isEnemy);
 
 };
 
