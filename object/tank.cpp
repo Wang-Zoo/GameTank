@@ -9,6 +9,7 @@ void TANK::init(int x,int y)
 	object.setY(y);
 	object.setSize(TANK_WIDTH, TANK_HEIGHT);
 	dir = TANK_DIR_UP;
+	attackTime = ENEMY_ATTACK_TIME_INTERVAL;
 }
 
 bool TANK::setDir(int dir)
@@ -70,16 +71,22 @@ bool TANK::canAttack()
 {
 	unsigned long long curTime = GetTickCount64();
 	unsigned long long offset = (curTime - lastTime) / 1;
-	if (offset > 500) {
+	if (offset > attackTime) {
 		lastTime = curTime;
 		return true;
 	}
 	return false;
 }
 
+void TANK::setAttackTime(int time)
+{
+	this->attackTime = time;
+}
+
 void OUR_SIDE_TANK::init()
 {
 	this->tank.init(0,0);
+	this->setAttackTime(OUR_ATTACK_TIME_INTERVAL);
 }
 
 void OUR_SIDE_TANK::run()
@@ -117,4 +124,9 @@ OBJECT* OUR_SIDE_TANK::getObject()
 bool OUR_SIDE_TANK::canAttack()
 {
 	return this->tank.canAttack();
+}
+
+void OUR_SIDE_TANK::setAttackTime(int time)
+{
+	this->tank.setAttackTime(time);
 }

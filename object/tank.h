@@ -8,7 +8,7 @@ private:
 	const char* picKey[4] = {TANK_PIC_UP,TANK_PIC_DOWN,TANK_PIC_LEFT,TANK_PIC_RIGHT};
 	int dir;
 	unsigned long long lastTime = 0l;
-
+	int attackTime = 0;
 public:
 	void init(int x, int y);
 	bool setDir(int dir);
@@ -16,6 +16,7 @@ public:
 	void run();
 	OBJECT* getObject();
 	bool canAttack();
+	void setAttackTime(int time);
 };
 
 struct OUR_SIDE_TANK {
@@ -28,4 +29,5 @@ public:
 	void keyboardMove();
 	OBJECT* getObject();
 	bool canAttack();
+	void setAttackTime(int time);
 };

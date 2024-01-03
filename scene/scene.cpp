@@ -10,15 +10,15 @@ void SCENE::run()
 void SCENE::init()
 {
 	bm.init();
-	bum.init();
+	bum.init(&bm);
 	tm.init(&bm,&bum);
 }
 
 void SCENE::end()
 {
 	tm.clear();
-	bm.clear();
 	bum.clear();
+	bm.clear();
 }
 
 void SCENE_ONE::init()

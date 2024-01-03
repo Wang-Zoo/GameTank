@@ -12,5 +12,6 @@ public:
 	void init(int x,int y,int dir);
 	void run();
 	bool isOverMap();
+	int getDir();
 	OBJECT getObject();
 };

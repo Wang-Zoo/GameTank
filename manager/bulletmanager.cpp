@@ -3,8 +3,9 @@
 #include"config/config.h"
 
 
-void BULLET_MANAGER::init()
+void BULLET_MANAGER::init(BARRIES_MANAGER* bm)
 {
+	this->bm = bm;
 	{
 		PIC pic;
 		char buf[1 * 1] = {
@@ -43,7 +44,9 @@ void BULLET_MANAGER::run()
 	std::vector<BULLET>::iterator it = this->vector.begin();
 	for (; it != this->vector.end();)
 	{
-		if ((*it).isOverMap()) {
+		BULLET temp = *it;
+		OBJECT tempObject = temp.getObject();
+		if (temp.isOverMap()||bm->collision(&tempObject, temp.getDir())) {
 			it = vector.erase(it);
 		}
 		else {

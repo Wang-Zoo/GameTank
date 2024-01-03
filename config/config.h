@@ -1,6 +1,6 @@
 #pragma once
 
-#define GAME_FPS 50 //游戏运行速度
+#define GAME_FPS 80 //游戏运行速度
 
 #define TANK_WIDTH 3
 #define TANK_HEIGHT 3
@@ -22,3 +22,5 @@
 #define BULLET_TYPE "BULLET" //子弹
 
 #define BULLET_STEP  2 //子弹步进距离
+#define OUR_ATTACK_TIME_INTERVAL 500
+#define ENEMY_ATTACK_TIME_INTERVAL 3000

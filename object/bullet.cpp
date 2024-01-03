@@ -46,6 +46,11 @@ bool BULLET::isOverMap()
 	return false;
 }
 
+int BULLET::getDir()
+{
+	return dir;
+}
+
 OBJECT BULLET::getObject()
 {
 	return object;
