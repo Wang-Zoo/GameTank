@@ -11,7 +11,7 @@ private:
 	std::vector<TANK> enemyVector;
 	std::vector<OUR_SIDE_TANK> ourSideVector;
 	BARRIES_MANAGER* bm = 0;
-	BULLET_MANAGER* bulletm = 0;
+	BULLET_MANAGER* bulletm = 0;	
 	bool collisionBarries(TANK *tank,int dir,bool isEnemy);
 	bool collisionBarries(OBJECT *tank,int dir,bool isEnemy);
 	bool collisionTank(OBJECT *object,int dir);

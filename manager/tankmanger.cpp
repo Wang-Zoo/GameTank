@@ -18,7 +18,6 @@ bool TANK_MANAGER::collisionBarries(TANK* tank, int dir, bool isEnemy)
 
 bool TANK_MANAGER::collisionBarries(OBJECT* tank, int dir,bool isEnemy)
 {
-	bulletm->collision(tank,dir,isEnemy);
 	if (bm->collision(tank, dir)) {
 		return true;
 	}
@@ -155,8 +154,13 @@ void TANK_MANAGER::run()
 	for (; enemyIt !=this->enemyVector.end();)
 	{
 		TANK& tempTank = *enemyIt;
+		OBJECT& tempObject = *tempTank.getObject();
+		if (bulletm->collision(&tempObject, tempTank.getDir(), true)) {
+			enemyIt = enemyVector.erase(enemyIt);
+			continue;
+		}
 		aiMove(&tempTank);
-		addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack(),true);
+		addBullet(tempObject, tempTank.getDir(), tempTank.canAttack(),true);
 		tempTank.run();
 		enemyIt++;
 	}
@@ -165,7 +169,12 @@ void TANK_MANAGER::run()
 	for (; ourSizeIt != this->ourSideVector.end();)
 	{
 		OUR_SIDE_TANK& tempTank = *ourSizeIt;
+		OBJECT& tempObject = *tempTank.getObject();
 		tempTank.keyboardMove();
+		if (bulletm->collision(&tempObject, tempTank.getDir(), false)) {
+			ourSizeIt = ourSideVector.erase(ourSizeIt);
+			continue;
+		}
 		if (GetAsyncKeyState('K') & 0x8000)
 			addBullet((*tempTank.getObject()), tempTank.getDir(),tempTank.canAttack(),false);
 		collisionBarries(tempTank.getObject(), tempTank.getDir(),false);

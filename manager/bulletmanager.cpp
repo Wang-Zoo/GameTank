@@ -86,6 +86,7 @@ bool BULLET_MANAGER::collision(OBJECT* other, int dir,bool isEnemy)
 		OBJECT targetObject = (*it).getObject();
 		if (targetObject.collision(other, dir,false) && (isEnemy!=(*it).isEnemyBullet())) {
 			it = vector.erase(it);
+			return true;
 		}
 		else {
 			it++;
