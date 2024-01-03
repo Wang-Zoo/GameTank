@@ -109,9 +109,9 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
 	add(false,0,0);
-	//add(true,3,0);
-	//add(true,9,0);
-	//add(true,15,0);
+	add(true,3,0);
+	add(true,9,0);
+	add(true,15,0);
 	add(true,18,0);
 
 }
@@ -141,16 +141,11 @@ int TANK_MANAGER::aiMove(TANK* tank)
 	return tempDir;
 }
 
-void TANK_MANAGER::addBullet(OBJECT object,int dir)
+void TANK_MANAGER::addBullet(OBJECT object,int dir,bool canAttack)
 {
-	if (GetAsyncKeyState('K') & 0x8000) {
-		unsigned long long curTime = GetTickCount64();
-		unsigned long long offset = (curTime - lastTime)/1;
-		if (offset>500) {
-			object.getX();
-			bulletm->add(object.getX(), object.getY(), dir);
-			lastTime = curTime;
-		}
+	if (canAttack) {
+		object.getX();
+		bulletm->add(object.getX(), object.getY(), dir);
 	}
 }
 
@@ -159,18 +154,22 @@ void TANK_MANAGER::run()
 	std::vector<TANK>::iterator enemyIt = this->enemyVector.begin();
 	for (; enemyIt !=this->enemyVector.end();)
 	{
-		aiMove(&(*enemyIt));
-		(*enemyIt).run();
+		TANK& tempTank = *enemyIt;
+		aiMove(&tempTank);
+		addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack());
+		tempTank.run();
 		enemyIt++;
 	}
 
 	std::vector<OUR_SIDE_TANK>::iterator ourSizeIt = this->ourSideVector.begin();
 	for (; ourSizeIt != this->ourSideVector.end();)
 	{
-		(*ourSizeIt).keyboardMove();
-		addBullet((*(*ourSizeIt).getObject()), (*ourSizeIt).getDir());
-		collisionBarries((*ourSizeIt).getObject(), (*ourSizeIt).getDir());
-		(*ourSizeIt).run();
+		OUR_SIDE_TANK& tempTank = *ourSizeIt;
+		tempTank.keyboardMove();
+		if (GetAsyncKeyState('K') & 0x8000)
+			addBullet((*tempTank.getObject()), tempTank.getDir(),tempTank.canAttack());
+		collisionBarries(tempTank.getObject(), tempTank.getDir());
+		tempTank.run();
 		ourSizeIt++;
 	}
 }

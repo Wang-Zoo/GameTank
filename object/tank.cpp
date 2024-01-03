@@ -1,5 +1,7 @@
 #include"tank.h"
 #include"tool/output.h"
+#include"Windows.h"
+
 
 void TANK::init(int x,int y)
 {
@@ -64,6 +66,17 @@ OBJECT* TANK::getObject()
 	return &this->object;
 }
 
+bool TANK::canAttack()
+{
+	unsigned long long curTime = GetTickCount64();
+	unsigned long long offset = (curTime - lastTime) / 1;
+	if (offset > 500) {
+		lastTime = curTime;
+		return true;
+	}
+	return false;
+}
+
 void OUR_SIDE_TANK::init()
 {
 	this->tank.init(0,0);
@@ -99,4 +112,9 @@ void OUR_SIDE_TANK::keyboardMove()
 OBJECT* OUR_SIDE_TANK::getObject()
 {
 	return this->tank.getObject();
+}
+
+bool OUR_SIDE_TANK::canAttack()
+{
+	return this->tank.canAttack();
 }

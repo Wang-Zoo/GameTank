@@ -12,12 +12,11 @@ private:
 	std::vector<OUR_SIDE_TANK> ourSideVector;
 	BARRIES_MANAGER* bm = 0;
 	BULLET_MANAGER* bulletm = 0;
-	unsigned long long lastTime = 0l;
 	bool collisionBarries(TANK *tank,int dir);
 	bool collisionBarries(OBJECT *tank,int dir);
 	bool collisionTank(OBJECT *object,int dir);
 	int  aiMove(TANK* tank);
-	void addBullet(OBJECT object,int dir);
+	void addBullet(OBJECT object,int dir,bool canAttack);
 public:
 	void init(BARRIES_MANAGER* bm,BULLET_MANAGER* bum);
 	void add(bool enemy, int x, int y);

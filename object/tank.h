@@ -7,12 +7,15 @@ private:
 	OBJECT object;
 	const char* picKey[4] = {TANK_PIC_UP,TANK_PIC_DOWN,TANK_PIC_LEFT,TANK_PIC_RIGHT};
 	int dir;
+	unsigned long long lastTime = 0l;
+
 public:
 	void init(int x, int y);
 	bool setDir(int dir);
 	int  getDir();
 	void run();
 	OBJECT* getObject();
+	bool canAttack();
 };
 
 struct OUR_SIDE_TANK {
@@ -24,4 +27,5 @@ public:
 	int  getDir();
 	void keyboardMove();
 	OBJECT* getObject();
+	bool canAttack();
 };

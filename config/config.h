@@ -1,5 +1,7 @@
 #pragma once
 
+#define GAME_FPS 50 //游戏运行速度
+
 #define TANK_WIDTH 3
 #define TANK_HEIGHT 3
 
@@ -18,3 +20,5 @@
 
 #define BARRIES_BRICK "B_BRICK" //砖块，可摧毁
 #define BULLET_TYPE "BULLET" //子弹
+
+#define BULLET_STEP  2 //子弹步进距离

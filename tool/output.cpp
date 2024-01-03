@@ -1,5 +1,6 @@
 #include "output.h"
 #include <iostream>
+#include "config/config.h"
 
 Output g_op;
 
@@ -143,7 +144,7 @@ void Output::End()
 	//œ»«Â∆¡
 	system("cls");
 	std::cout << ClientStr; 
-	Sleep(30);
+	Sleep(GAME_FPS);
 }
 
 void Output::SetClientWH(int w, int h)

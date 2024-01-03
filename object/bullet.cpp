@@ -16,16 +16,16 @@ void BULLET::run()
 	int x =  this->object.getX();
 	int y =  this->object.getY();
 	if (dir == TANK_DIR_UP) {
-		y--;
+		y-= BULLET_STEP;
 	}
 	else if (dir == TANK_DIR_DOWN) {
-		y++;
+		y+= BULLET_STEP;
 	}
 	else if (dir == TANK_DIR_LEFT) {
-		x--;
+		x-= BULLET_STEP;
 	}
 	else if (dir == TANK_DIR_RIGHT) {
-		x++;
+		x+= BULLET_STEP;
 	}
 	this->object.setX(x);
 	this->object.setY(y);
