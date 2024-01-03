@@ -28,19 +28,19 @@ void BULLET_MANAGER::add(int x,int y,int dir,bool isEnemy)
 {
 	BULLET bullet;
 	if (dir == TANK_DIR_UP) {
-		y--;
+		//y--;
 		x++;
 	}
 	else if (dir == TANK_DIR_DOWN) {
-		y+=TANK_HEIGHT;
+		y+=TANK_HEIGHT-1;
 		x++;
 	}
 	else if (dir == TANK_DIR_LEFT) {
-		x--;
+		//x--;
 		y++;
 	}
 	else if (dir == TANK_DIR_RIGHT) {
-		x+=TANK_WIDTH;
+		x+=TANK_WIDTH-1;
 		y++;
 	}
 	bullet.init(x, y,dir,isEnemy);
@@ -63,7 +63,7 @@ void BULLET_MANAGER::run()
 			BULLET &temp = *it;
 			temp.move();
 			OBJECT tempObject = temp.getObject();
-			if (temp.isOverMap() || bm->collision(&tempObject, temp.getDir())|| collision(&tempObject,temp.getDir(),temp.isEnemyBullet(),temp.isEnemyBullet())) {
+			if (temp.isOverMap() || bm->collision(&tempObject, temp.getDir(),true)|| collision(&tempObject,temp.getDir(),temp.isEnemyBullet(),temp.isEnemyBullet())) {
 				temp.dead();
 				isContinue = true;
 				break;

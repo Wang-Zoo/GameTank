@@ -4,6 +4,8 @@
 
 #define TANK_WIDTH 3
 #define TANK_HEIGHT 3
+#define BRICK_UNIT_WIDTH 1
+#define BRICK_UNIT_HEIGHT 1
 
 #define MAP_WIDTH (TANK_WIDTH * 13)
 #define MAP_HEIGHT (TANK_HEIGHT * 14)
