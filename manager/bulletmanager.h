@@ -13,7 +13,7 @@ public:
 	void add(int x,int y,int dir,bool isEnemy);
 	void run();
 	void clear();
-	bool collision(OBJECT* other, int dir, bool isEnemy);
+	bool collision(OBJECT* other, int dir, bool isEnemy,bool isBullet = false);
 
 };
 

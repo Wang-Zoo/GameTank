@@ -37,6 +37,16 @@ void BULLET::move()
 
 }
 
+void BULLET::dead()
+{
+	alive = false;
+}
+
+bool BULLET::isAlive()
+{
+	return alive;
+}
+
 bool BULLET::isOverMap()
 {
 	int x = object.getX();
