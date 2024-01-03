@@ -107,7 +107,7 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 		pic.SetPic(buf, 3, 3);
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
-	add(false,0,0);
+	add(false);
 	add(true,3,0);
 	add(true,9,0);
 	add(true,15,0);
@@ -115,7 +115,7 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 
 }
 
-void TANK_MANAGER::add(bool enemy,int x = 0,int y = 0)
+void TANK_MANAGER::add(bool enemy,int x,int y)
 {
 	if (enemy) {
 		TANK tank;

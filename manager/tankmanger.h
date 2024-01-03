@@ -19,7 +19,7 @@ private:
 	void addBullet(OBJECT object,int dir,bool canAttack,bool isEnemy);
 public:
 	void init(BARRIES_MANAGER* bm,BULLET_MANAGER* bum);
-	void add(bool enemy, int x, int y);
+	void add(bool enemy, int x = 0, int y = 0);
 	void run();
 	void clear();
 

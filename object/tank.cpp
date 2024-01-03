@@ -85,7 +85,7 @@ void TANK::setAttackTime(int time)
 
 void OUR_SIDE_TANK::init()
 {
-	this->tank.init(0,0);
+	this->tank.init(0,MAP_HEIGHT-TANK_HEIGHT);
 	this->setAttackTime(OUR_ATTACK_TIME_INTERVAL);
 }
 
