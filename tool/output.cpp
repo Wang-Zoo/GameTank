@@ -64,6 +64,8 @@ void Output::Begin()
 			ClientStr[offset * i + j * 2 + 1] = ' ';
 		}
 	}
+
+	memset(ColorStr, 0, colorfulSize);
 }
 
 void Output::DrawPic(const char* key, int x, int y)
@@ -121,10 +123,10 @@ void Output::DrawPic(const char* key, int x, int y)
 	int s = pw * ph;
 	for (int i = 0; i < s; ++i)
 	{
-		int tsIndex = p[pos2] * 2;
+		OutputUnitInfo& info = tsvector[p[pos2]];
 		int tempIndex = pos / cw * (cw * 2 + 1) + pos % cw * 2;
-		ClientStr[tempIndex] = ts[tsIndex];
-		ClientStr[tempIndex + 1] = ts[tsIndex + 1];
+		ClientStr[tempIndex] = info.getTs()[0];
+		ClientStr[tempIndex + 1] = info.getTs()[1];
 		pos2 += 1;
 		pos += 1;
 		if (i % pw == pw - 1)
@@ -143,14 +145,42 @@ void Output::End()
 		return;
 	//先清屏
 	system("cls");
-	std::cout << ClientStr; 
+	int flowIndex = 0;
+	for (int originIndex = 0; ClientStr[originIndex]; originIndex++)
+	{
+		char& temp = ClientStr[originIndex];
+		std::vector<OutputUnitInfo>::iterator it = tsvector.begin();
+		for (; it != tsvector.end(); it++)
+		{
+			OutputUnitInfo& info = *it;
+			if (temp == info.getTs()[0]) {
+				memcpy(&ColorStr[flowIndex], info.getTsc(), info.getLength());
+				flowIndex += info.getLength();
+				break;
+			}
+		}
+		ColorStr[flowIndex] = temp;
+		flowIndex++;
+	}
+	std::cout << ColorStr;
+
 	Sleep(GAME_FPS);
 }
 
 void Output::SetClientWH(int w, int h)
 {
-	//     0 1 2 3 4 5 6 7
-	SetTs("  ‖●＝〓★□▓");
+	// 0 1 2 3 4 5 6 7
+	//"  ‖●＝〓★□▓");
+	//const char* tempTs = "  ‖●＝〓★□▓";
+	addInfo("  ", "", 0);
+	addInfo("‖", "\033[31m", 5);
+	addInfo("▇", "\033[32m", 5);
+	addInfo("＝", "\033[31m", 5);
+	addInfo("〓", "\033[31m", 5);
+	addInfo("★", "\033[31m", 5);
+	addInfo("□", "\033[31m", 5);
+	addInfo("▓", "\033[31m", 5);
+
 	//数据合法校验
 	if (w < 1 || h < 1)
 	{
@@ -167,11 +197,13 @@ void Output::SetClientWH(int w, int h)
 	const int offset = cw * 2 + 1;
 	const int size = ch * (offset);
 	ClientStr = (char*)malloc(size);
-}
 
-void Output::SetTs(const char* ts)
-{
-	this->ts = ts;
+	if (ColorStr) {
+		free(ColorStr);
+		ColorStr = 0;
+	}
+	colorfulSize = size * 6;
+	ColorStr = (char*)malloc(colorfulSize);
 }
 
 bool Output::AddPic(const char* key, PIC pic)
@@ -190,6 +222,7 @@ bool Output::AddPic(const char* key, PIC pic)
 void Output::Clear()
 {
 	PicMap.clear();
+	tsvector.clear();
 }
 
 void Output::SetClientPos(int x, int y)
@@ -216,4 +249,32 @@ int Output::GetCX()
 int Output::GetCY()
 {
 	return cy;
+}
+
+void Output::addInfo(const char* ts, const char* tsc,int length)
+{
+	OutputUnitInfo oui;
+	oui.init(ts, tsc, length);
+	this->tsvector.push_back(oui);
+}
+
+void OutputUnitInfo::init(const char* ts, const char* tsc, int length)
+{
+	this->ts = ts;
+	this->tsc = tsc;
+	this->length = length;
+}
+
+const char* OutputUnitInfo::getTs()
+{
+	return ts;
+}
+
+const char* OutputUnitInfo::getTsc()
+{
+	return tsc;
+}
+
+int OutputUnitInfo::getLength() {
+	return length;
 }
