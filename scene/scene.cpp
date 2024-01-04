@@ -1,14 +1,23 @@
 #include"scene.h"
+#include"tool/output.h"
+#include"config/config.h"
 
-void SCENE::run()
+int SCENE::run()
 {
-	tm.run();
+	if (tm.run() != ACTION_NONE) {
+		return ACTION_EXIT;
+	}
 	bm.run();
 	bum.run();
+	return ACTION_NONE;
 }
 
 void SCENE::init()
 {
+	//     0 1 2 3 4 5 6 7
+	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
+	g_op.SetClientPos(0, 0);
+	g_op.SetTs("  ¡¬¡ñ£½¡þ¡ï¡õ¨ˆ");
 	bm.init();
 	bum.init(&bm);
 	tm.init(&bm,&bum);
@@ -19,6 +28,7 @@ void SCENE::end()
 	tm.clear();
 	bum.clear();
 	bm.clear();
+	g_op.Clear();
 }
 
 void SCENE_ONE::init()

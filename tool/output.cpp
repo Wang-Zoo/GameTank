@@ -149,8 +149,6 @@ void Output::End()
 
 void Output::SetClientWH(int w, int h)
 {
-	//     0 1 2 3 4 5 6 7
-	SetTs("  ‖●＝〓★□▓");
 	//数据合法校验
 	if (w < 1 || h < 1)
 	{

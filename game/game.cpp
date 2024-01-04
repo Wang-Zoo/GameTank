@@ -4,36 +4,89 @@
 #include"manager/tankmanger.h"
 #include"manager/barriesmanager.h"
 
-int GAME::getWidth()
-{
-	return mapWidth;
-}
-
-int GAME::getHeight()
-{
-	return mapHeight;
-}
-
 void GAME::init()
 {
-	mapWidth = MAP_WIDTH;
-	mapHeight = MAP_HEIGHT;
-	g_op.SetClientWH(mapWidth, mapHeight);
-	g_op.SetClientPos(0, 0);
-	sceneTwo.init();
+
+	switch (index)
+	{
+	case 0:
+		uiStart.init();
+		break;
+	case 1:
+		uiStageOne.init();
+		break;
+	case 2:
+		sceneOne.init();
+		break;
+	case 3:
+		uiStageTwo.init();
+		break;
+	case 4:
+		sceneTwo.init();
+		break;
+	case 5:
+		uiGameEnd.init();
+		break;
+	}
+
 }
 
-void GAME::run()
+int GAME::run()
 {
-	while (true)
+	int action = ACTION_NONE;
+	while (action == ACTION_NONE)
 	{
 		g_op.Begin();
-		sceneTwo.baseScene.run();
+		switch (index)
+		{
+		case 0:
+			action =uiStart.run();
+			break;
+		case 1:
+			action = uiStageOne.run();
+			break;
+		case 2:
+			action = sceneOne.baseScene.run();
+			break;
+		case 3:
+			action = uiStageTwo.run();
+			break;
+		case 4:
+			action = sceneTwo.baseScene.run();
+			break;
+		case 5:
+			action = uiGameEnd.run();
+			break;
+		default:
+			return ACTION_NEXT;
+		}
 		g_op.End();
 	}
+	index++;
+	return ACTION_NONE;
 }
 
 void GAME::end()
 {
-	sceneTwo.baseScene.end();
+	switch (index)
+	{
+	case 0:
+		uiStart.end();
+		break;
+	case 1:
+		uiStageOne.end();
+		break;
+	case 2:
+		sceneOne.baseScene.end();
+		break;
+	case 3:
+		uiStageTwo.end();
+		break;
+	case 4:
+		sceneTwo.baseScene.end();
+		break;
+	case 5:
+		uiGameEnd.end();
+		break;
+	}
 }

@@ -10,6 +10,9 @@
 #define MAP_WIDTH (TANK_WIDTH * 13)
 #define MAP_HEIGHT (TANK_HEIGHT * 14)
 
+#define UI_WIDTH 30
+#define UI_HEIGHT 30
+
 #define TANK_DIR_UP 0
 #define TANK_DIR_DOWN 1
 #define TANK_DIR_LEFT 2
@@ -29,3 +32,7 @@
 #define BULLET_STEP  2 //×Óµ¯²½½ø¾àÀë
 #define OUR_ATTACK_TIME_INTERVAL 500
 #define ENEMY_ATTACK_TIME_INTERVAL 1000
+
+#define ACTION_NEXT 1
+#define ACTION_EXIT 2
+#define ACTION_NONE 0

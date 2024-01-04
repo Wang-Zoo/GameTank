@@ -26,12 +26,12 @@ private:
 	int cy;
 	char* ClientStr = 0;	//ÏÔÊ¾ÇøÓò
 	const char* ts = 0;		//Í¼ËØ¼ÇÂ¼
-	void SetTs(const char* ts);
 public:
 	void Begin();
 	void DrawPic(const char* key, int x, int y);
 	void End();
 
+	void SetTs(const char* ts);
 	void SetClientWH(int w, int h);
 	bool AddPic(const char* key, PIC pic);
 	void Clear();
