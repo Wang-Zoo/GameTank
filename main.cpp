@@ -2,9 +2,14 @@
 #include "game/game.h"
 
 int main() {
+
 	GAME game;
-	game.init();
-	game.run();
-	game.end();
+	while (true)
+	{
+		game.init();
+		if (game.run() != ACTION_NONE)
+			break;
+		game.end();
+	}
 	return 0;
 }

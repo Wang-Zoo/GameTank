@@ -107,7 +107,6 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 		pic.SetPic(buf, TANK_WIDTH, TANK_HEIGHT);
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
-	add(false); 
 	add(true,3,0);
 	add(true,9,0);
 	add(true,15,0);
@@ -148,9 +147,13 @@ void TANK_MANAGER::addBullet(OBJECT object,int dir,bool canAttack,bool isEnemy)
 	}
 }
 
-void TANK_MANAGER::run()
+int TANK_MANAGER::run()
 {
 	std::vector<TANK>::iterator enemyIt = this->enemyVector.begin();
+	if (enemyIt == enemyVector.end()) {
+		return ACTION_NEXT;
+	}
+
 	for (; enemyIt !=this->enemyVector.end();)
 	{
 		TANK& tempTank = *enemyIt;
@@ -166,21 +169,27 @@ void TANK_MANAGER::run()
 	}
 
 	std::vector<OUR_SIDE_TANK>::iterator ourSizeIt = this->ourSideVector.begin();
-	for (; ourSizeIt != this->ourSideVector.end();)
-	{
-		OUR_SIDE_TANK& tempTank = *ourSizeIt;
-		OBJECT& tempObject = *tempTank.getObject();
-		tempTank.keyboardMove();
-		if (bulletm->collision(&tempObject, tempTank.getDir(), false)) {
-			ourSizeIt = ourSideVector.erase(ourSizeIt);
-			continue;
-		}
-		if (GetAsyncKeyState('K') & 0x8000)
-			addBullet((*tempTank.getObject()), tempTank.getDir(),tempTank.canAttack(),false);
-		collisionBarries(tempTank.getObject(), tempTank.getDir(),false);
-		tempTank.run();
-		ourSizeIt++;
+	if (ourSizeIt == ourSideVector.end()) {
+		add(false);
 	}
+	else {
+		for (; ourSizeIt != this->ourSideVector.end();)
+		{
+			OUR_SIDE_TANK& tempTank = *ourSizeIt;
+			OBJECT& tempObject = *tempTank.getObject();
+			tempTank.keyboardMove();
+			if (bulletm->collision(&tempObject, tempTank.getDir(), false)) {
+				ourSizeIt = ourSideVector.erase(ourSizeIt);
+				continue;
+			}
+			if (GetAsyncKeyState('K') & 0x8000)
+				addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack(), false);
+			collisionBarries(tempTank.getObject(), tempTank.getDir(), false);
+			tempTank.run();
+			ourSizeIt++;
+		}
+	}
+	return ACTION_NONE;
 }
 
 void TANK_MANAGER::clear()

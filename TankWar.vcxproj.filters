@@ -62,6 +62,9 @@
     <ClCompile Include="manager\bulletmanager.cpp">
       <Filter>src\manager</Filter>
     </ClCompile>
+    <ClCompile Include="scene\ui.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\base.h">
@@ -99,6 +102,9 @@
     </ClInclude>
     <ClInclude Include="manager\bulletmanager.h">
       <Filter>src\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\ui.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

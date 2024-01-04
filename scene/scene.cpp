@@ -1,11 +1,15 @@
 #include"scene.h"
 #include"tool/output.h"
 
-void SCENE::run()
+
+int SCENE::run()
 {
-	tm.run();
+	if (tm.run() != ACTION_NONE) {
+		return ACTION_EXIT;
+	}
 	bm.run();
 	bum.run();
+	return ACTION_NONE;
 }
 
 void SCENE::init()

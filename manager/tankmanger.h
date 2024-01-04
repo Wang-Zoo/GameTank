@@ -20,7 +20,7 @@ private:
 public:
 	void init(BARRIES_MANAGER* bm,BULLET_MANAGER* bum);
 	void add(bool enemy, int x = 0, int y = 0);
-	void run();
+	int run();
 	void clear();
 
 };

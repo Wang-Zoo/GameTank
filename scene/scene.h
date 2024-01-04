@@ -8,7 +8,7 @@ struct SCENE
 	BARRIES_MANAGER bm;
 	TANK_MANAGER tm;
 	BULLET_MANAGER bum;
-	void run();
+	int run();
 	void init();
 	void end();
 };
