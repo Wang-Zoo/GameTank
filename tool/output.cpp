@@ -149,18 +149,25 @@ void Output::End()
 	for (int originIndex = 0; ClientStr[originIndex]; originIndex++)
 	{
 		char& temp = ClientStr[originIndex];
+		if (temp == 32||temp == '\n') {
+			ColorStr[flowIndex] = temp;
+			flowIndex++;
+			continue;
+		}
 		std::vector<OutputUnitInfo>::iterator it = tsvector.begin();
 		for (; it != tsvector.end(); it++)
 		{
 			OutputUnitInfo& info = *it;
-			if (temp == info.getTs()[0]) {
+			if (temp == info.getTs()[1]) {
 				memcpy(&ColorStr[flowIndex], info.getTsc(), info.getLength());
 				flowIndex += info.getLength();
+				ColorStr[flowIndex] = ClientStr[originIndex-1];
+				flowIndex++;
+				ColorStr[flowIndex] = ClientStr[originIndex];
+				flowIndex++;
 				break;
 			}
 		}
-		ColorStr[flowIndex] = temp;
-		flowIndex++;
 	}
 	std::cout << ColorStr;
 
@@ -174,12 +181,12 @@ void Output::SetClientWH(int w, int h)
 	//const char* tempTs = "  ‖●＝〓★□▓";
 	addInfo("  ", "", 0);
 	addInfo("‖", "\033[31m", 5);
-	addInfo("▇", "\033[32m", 5);
+	addInfo("●", "\033[32m", 5);
 	addInfo("＝", "\033[31m", 5);
-	addInfo("〓", "\033[31m", 5);
+	addInfo("〓", "\033[33m", 5);
 	addInfo("★", "\033[31m", 5);
-	addInfo("□", "\033[31m", 5);
-	addInfo("▓", "\033[31m", 5);
+	addInfo("□", "\033[34m", 5);
+	addInfo("▓", "\033[32m", 5);
 
 	//数据合法校验
 	if (w < 1 || h < 1)
