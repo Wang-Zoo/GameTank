@@ -21,6 +21,8 @@
 #define TANK_PIC_RIGHT "TANK_RIGHT"
 
 #define BARRIES_BRICK "B_BRICK" //砖块，可摧毁
+#define BARRIES_IRON "B_IRON" //铁块，不可摧毁
+#define BARRIES_TREE "B_TREE" //树丛，不可摧毁，可通过，被隐藏
 #define ENEMY_BULLET_TYPE "ENNEMY_BULLET" //子弹
 #define OUR_BULLET_TYPE "OUR_BULLET" //子弹
 

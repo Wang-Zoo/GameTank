@@ -20,7 +20,7 @@ void GAME::init()
 	mapHeight = MAP_HEIGHT;
 	g_op.SetClientWH(mapWidth, mapHeight);
 	g_op.SetClientPos(0, 0);
-	sceneOne.init();
+	sceneTwo.init();
 }
 
 void GAME::run()
@@ -28,12 +28,12 @@ void GAME::run()
 	while (true)
 	{
 		g_op.Begin();
-		sceneOne.baseScene.run();
+		sceneTwo.baseScene.run();
 		g_op.End();
 	}
 }
 
 void GAME::end()
 {
-	sceneOne.baseScene.end();
+	sceneTwo.baseScene.end();
 }

@@ -7,7 +7,9 @@ struct BARRIES_MANAGER
 {
 private:
 	std::vector<BARRIES> vector; 
-	void add(int x, int y);
+	void addBrick(int x, int y);
+	void addIron(int x, int y);
+	void addTree(int x, int y);
 	void destoryBrick(int x,int y,int dir);
 public:
 	void init();
@@ -15,4 +17,6 @@ public:
 	void run();
 	void clear();
 	void buildBrick(int x, int y, int height);
+	void buildIron(int x, int y, int height);
+	void buildTree(int x, int y, int height);
 };

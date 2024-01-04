@@ -17,12 +17,19 @@ void BARRIES::run()
 
 void BARRIES::dead()
 {
-	alive = false;
+	if (picKey == BARRIES_BRICK) {
+		alive = false;
+	}
 }
 
 bool BARRIES::isAlive()
 {
 	return alive;
+}
+
+bool BARRIES::canPass()
+{
+	return picKey == BARRIES_TREE;
 }
 
 OBJECT BARRIES::getObject()

@@ -7,9 +7,29 @@ void BARRIES_MANAGER::buildBrick(int x, int y, int height)
 {
 	for (int i = 0; i < height; i++)
 	{
-		add(x, y+i);
-		add(x+1, y+i);
-		add(x+2, y+i);
+		addBrick(x, y+i);
+		addBrick(x+1, y+i);
+		addBrick(x+2, y+i);
+	}
+}
+
+void BARRIES_MANAGER::buildIron(int x, int y, int height)
+{
+	for (int i = 0; i < height; i++)
+	{
+		addIron(x, y + i);
+		addIron(x + 1, y + i);
+		addIron(x + 2, y + i);
+	}
+}
+
+void BARRIES_MANAGER::buildTree(int x, int y, int height)
+{
+	for (int i = 0; i < height; i++)
+	{
+		addTree(x, y + i);
+		addTree(x + 1, y + i);
+		addTree(x + 2, y + i);
 	}
 }
 
@@ -23,12 +43,42 @@ void BARRIES_MANAGER::init()
 		pic.SetPic(buf, BRICK_UNIT_WIDTH, BRICK_UNIT_HEIGHT);
 		g_op.AddPic(BARRIES_BRICK, pic);
 	}
+	{
+		PIC pic;
+		char buf[BRICK_UNIT_WIDTH * BRICK_UNIT_HEIGHT] = {
+			6,
+		};
+		pic.SetPic(buf, BRICK_UNIT_WIDTH, BRICK_UNIT_HEIGHT);
+		g_op.AddPic(BARRIES_IRON, pic);
+	}
+	{
+		PIC pic;
+		char buf[BRICK_UNIT_WIDTH * BRICK_UNIT_HEIGHT] = {
+			7,
+		};
+		pic.SetPic(buf, BRICK_UNIT_WIDTH, BRICK_UNIT_HEIGHT);
+		g_op.AddPic(BARRIES_TREE, pic);
+	}
 }
 
-void BARRIES_MANAGER::add(int x,int y)
+void BARRIES_MANAGER::addBrick(int x,int y)
 {
 	BARRIES barries;
 	barries.init(BARRIES_BRICK, x, y);
+	vector.push_back(barries);
+}
+
+void BARRIES_MANAGER::addIron(int x, int y)
+{
+	BARRIES barries;
+	barries.init(BARRIES_IRON, x, y);
+	vector.push_back(barries);
+}
+
+void BARRIES_MANAGER::addTree(int x, int y)
+{
+	BARRIES barries;
+	barries.init(BARRIES_TREE, x, y);
 	vector.push_back(barries);
 }
 
@@ -97,7 +147,7 @@ bool BARRIES_MANAGER::collision(OBJECT *other,int dir, bool isBullet)
 	for (; it != this->vector.end();)
 	{
 		OBJECT targetObject = (*it).getObject();
-		if ((*it).isAlive()&&targetObject.collision(other,dir,!isBullet)) {
+		if ((*it).isAlive()&&!(*it).canPass()&& targetObject.collision(other, dir, !isBullet)) {
 
 			if (isBullet) {
 				destoryBrick(other->getX(), other->getY(),dir);

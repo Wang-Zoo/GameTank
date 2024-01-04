@@ -12,5 +12,6 @@ public:
 	void run();
 	void dead();
 	bool isAlive();
+	bool canPass();
 	OBJECT getObject();
 };     

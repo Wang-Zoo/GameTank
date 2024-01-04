@@ -18,3 +18,9 @@ struct SCENE_ONE
 	SCENE baseScene;
 	void init();
 };
+
+struct SCENE_TWO
+{
+	SCENE baseScene;
+	void init();
+};

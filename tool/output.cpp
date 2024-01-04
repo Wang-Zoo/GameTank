@@ -1,4 +1,4 @@
-#include "output.h"
+ï»¿#include "output.h"
 #include <iostream>
 #include "config/config.h"
 
@@ -41,21 +41,21 @@ int PIC::GetH()
 
 void Output::Begin()
 {
-	//»æÖÆÊı×éÈç¹ûÃ»ÓĞ¿ª±ÙºÃ£¬²»ÄÜ¿ªÊ¼Ê¹ÓÃ
+	//ç»˜åˆ¶æ•°ç»„å¦‚æœæ²¡æœ‰å¼€è¾Ÿå¥½ï¼Œä¸èƒ½å¼€å§‹ä½¿ç”¨
 	if (ClientStr == 0)
 		return;
 	const int offset = cw * 2 + 1;
 	const int size = ch * (offset);
 
-	//Ä©Î²½áÊø·û
+	//æœ«å°¾ç»“æŸç¬¦
 	ClientStr[size - 1] = '\0';
 
-	//»»ĞĞ·û
+	//æ¢è¡Œç¬¦
 	for (int i = 0; i < ch - 1; i++)
 	{
 		ClientStr[offset * (i + 1) - 1] = '\n';
 	}
-	//Çå¿ÕÆäËûÇøÓò
+	//æ¸…ç©ºå…¶ä»–åŒºåŸŸ
 	for (int i = 0; i < ch; ++i)
 	{
 		for (int j = 0; j < cw; ++j)
@@ -115,7 +115,7 @@ void Output::DrawPic(const char* key, int x, int y)
 	{
 		ph = ph - (ph + y - ch);
 	}
-	//³õÊ¼Ïà¶ÔÏÂ±ê ¼ÆËã³öÀ´
+	//åˆå§‹ç›¸å¯¹ä¸‹æ ‡ è®¡ç®—å‡ºæ¥
 	int pos = x + y * cw;
 	int pos2 = px + py * picw;
 	int s = pw * ph;
@@ -141,7 +141,7 @@ void Output::End()
 {
 	if (ClientStr == 0)
 		return;
-	//ÏÈÇåÆÁ
+	//å…ˆæ¸…å±
 	system("cls");
 	std::cout << ClientStr; 
 	Sleep(GAME_FPS);
@@ -149,9 +149,9 @@ void Output::End()
 
 void Output::SetClientWH(int w, int h)
 {
-	//     0 1 2 3 4 5
-	SetTs("  ¡¬¡ñ£½¡ş¡ï");
-	//Êı¾İºÏ·¨Ğ£Ñé
+	//     0 1 2 3 4 5 6 7
+	SetTs("  â€–â—ï¼ã€“â˜…â–¡â–“");
+	//æ•°æ®åˆæ³•æ ¡éªŒ
 	if (w < 1 || h < 1)
 	{
 		cw = 0;
