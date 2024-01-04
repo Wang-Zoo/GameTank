@@ -1,4 +1,5 @@
 #include"scene.h"
+#include"tool/output.h"
 
 void SCENE::run()
 {
@@ -9,6 +10,19 @@ void SCENE::run()
 
 void SCENE::init()
 {
+	//						0 1 2 3 4 5 6 7
+	//const char* tempTs = "  ¡¬¡ñ£½¡þ¡ï¡õ¨ˆ";
+	g_op.addInfo("  ", "", 0);
+	g_op.addInfo("¡¬", "\033[31m", 5);
+	g_op.addInfo("¡ñ", "\033[32m", 5);
+	g_op.addInfo("£½", "\033[31m", 5);
+	g_op.addInfo("¡þ", "\033[33m", 5);
+	g_op.addInfo("¡ï", "\033[31m", 5);
+	g_op.addInfo("¡õ", "\033[34m", 5);
+	g_op.addInfo("¨ˆ", "\033[32m", 5);
+	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
+	g_op.SetClientPos(0, 0);
+
 	bm.init();
 	bum.init(&bm);
 	tm.init(&bm,&bum);
@@ -19,6 +33,7 @@ void SCENE::end()
 	tm.clear();
 	bum.clear();
 	bm.clear();
+	g_op.Clear();
 }
 
 void SCENE_ONE::init()

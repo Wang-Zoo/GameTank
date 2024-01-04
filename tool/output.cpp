@@ -176,18 +176,6 @@ void Output::End()
 
 void Output::SetClientWH(int w, int h)
 {
-	// 0 1 2 3 4 5 6 7
-	//"  ‖●＝〓★□▓");
-	//const char* tempTs = "  ‖●＝〓★□▓";
-	addInfo("  ", "", 0);
-	addInfo("‖", "\033[31m", 5);
-	addInfo("●", "\033[32m", 5);
-	addInfo("＝", "\033[31m", 5);
-	addInfo("〓", "\033[33m", 5);
-	addInfo("★", "\033[31m", 5);
-	addInfo("□", "\033[34m", 5);
-	addInfo("▓", "\033[32m", 5);
-
 	//数据合法校验
 	if (w < 1 || h < 1)
 	{

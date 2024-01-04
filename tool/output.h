@@ -42,12 +42,12 @@ private:
 	int colorfulSize = 0;
 	char* ClientStr = 0;	//显示区域
 	char* ColorStr = 0;	//显示区域
-	void addInfo(const char* ts, const char* tsc,int length);
 public:
 	void Begin();
 	void DrawPic(const char* key, int x, int y);
 	void End();
 
+	void addInfo(const char* ts, const char* tsc, int length);
 	void SetClientWH(int w, int h);
 	bool AddPic(const char* key, PIC pic);
 	void Clear();
