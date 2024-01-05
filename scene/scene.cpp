@@ -17,7 +17,7 @@ void SCENE::init()
 	//     0 1 2 3 4 5 6 7
 	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
 	g_op.SetClientPos(0, 0);
-	g_op.SetTs("  ¡¬¡ñ£½¡þ¡ï¡õ¨ˆ");
+	g_op.SetTs("  ¡¬¡ñ£½¡þ¡ï¡õ¡ø");
 	bm.init();
 	bum.init(&bm);
 	tm.init(&bm,&bum);
