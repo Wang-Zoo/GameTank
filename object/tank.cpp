@@ -38,7 +38,8 @@ bool TANK::setDir(int dir)
 		this->dir = dir;
 		return true;
 	}*/
-	this->dir = dir;
+
+	this->dir = dir; 
 	int x = this->object.getX();
 	int y = this->object.getY();
 	const int width = this->object.getWidth();

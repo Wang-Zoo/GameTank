@@ -4,6 +4,10 @@
 
 #define TANK_WIDTH 3
 #define TANK_HEIGHT 3
+
+#define BOX_WIDTH 3
+#define BOX_HEIGHT 3
+
 #define BRICK_UNIT_WIDTH 1
 #define BRICK_UNIT_HEIGHT 1
 
@@ -30,6 +34,10 @@
 #define BARRIES_TREE "B_TREE" //树丛，不可摧毁，可通过，被隐藏
 #define ENEMY_BULLET_TYPE "ENNEMY_BULLET" //子弹
 #define OUR_BULLET_TYPE "OUR_BULLET" //子弹
+
+#define BOX_ALL_DESTORY "BOX_ALL_DESTORY"
+#define BOX_ALL_DESTORY_TYPE 0
+#define BOX_NONE -1
 
 #define BULLET_STEP  2 //子弹步进距离
 #define OUR_ATTACK_TIME_INTERVAL 500

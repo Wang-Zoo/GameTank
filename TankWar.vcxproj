@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="object\box.cpp" />
+    <ClCompile Include="manager\boxmanager.cpp" />
     <ClCompile Include="game\game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager\barriesmanager.cpp" />
@@ -143,6 +145,8 @@
     <ClCompile Include="scene\ui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="object\box.h" />
+    <ClInclude Include="manager\boxmanager.h" />
     <ClInclude Include="config\config.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="manager\barriesmanager.h" />

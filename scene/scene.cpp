@@ -9,6 +9,7 @@ int SCENE::run()
 	}
 	bum.run();
 	bm.run();
+	boxm.run();
 	return ACTION_NONE;
 }
 
@@ -25,12 +26,14 @@ void SCENE::init()
 	g_op.addInfo("¡õ", "\033[34m", 5);
 	g_op.addInfo("¡ø", "\033[32m", 5);
 	g_op.addInfo("¡ù", "\033[32m", 5);
+	g_op.addInfo("©I", "\033[36m", 5);
 	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
 	g_op.SetClientPos(0, 0);
 
 	bm.init();
 	bum.init(&bm);
-	tm.init(&bm,&bum);
+	boxm.init();
+	tm.init(&bm,&bum,&boxm);
 }
 
 void SCENE::end()
@@ -38,6 +41,7 @@ void SCENE::end()
 	tm.clear();
 	bum.clear();
 	bm.clear();
+	boxm.clear();
 	g_op.Clear();
 }
 
