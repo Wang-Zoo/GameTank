@@ -24,6 +24,7 @@ void SCENE::init()
 	g_op.addInfo("¡ï", "\033[31m", 5);
 	g_op.addInfo("¡õ", "\033[34m", 5);
 	g_op.addInfo("¡ø", "\033[32m", 5);
+	g_op.addInfo("¡ù", "\033[32m", 5);
 	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
 	g_op.SetClientPos(0, 0);
 

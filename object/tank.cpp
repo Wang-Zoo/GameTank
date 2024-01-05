@@ -3,6 +3,26 @@
 #include"Windows.h"
 
 
+bool TANK::isDestoryStatus()
+{
+	return isDestory;
+}
+
+void TANK::setDestoryStatus()
+{
+	isDestory = true;
+}
+
+bool TANK::isDisapperStatus()
+{
+	return isDisapper;
+}
+
+bool TANK::isNormal()
+{
+	return !isDestory&&!isDisapper;
+}
+
 void TANK::init(int x,int y)
 {
 	object.setX(x);
@@ -63,7 +83,21 @@ int TANK::getDir()
 
 void TANK::run()
 { 
-	g_op.DrawPic(picKey[dir], object.getX(), object.getY());
+	if (isDestory) {
+		if (destoryTime == 0l) {
+			destoryTime = GetTickCount64();
+		}
+		else {
+			unsigned long long curTime = GetTickCount64();
+			if (curTime - destoryTime > 200) {
+				isDisapper = true;
+			}
+		}
+		g_op.DrawPic(TANK_DESTORY, object.getX(), object.getY());
+	}
+	else {
+		g_op.DrawPic(picKey[dir], object.getX(), object.getY());
+	}
 }
 
 OBJECT* TANK::getObject()
@@ -126,9 +160,24 @@ OBJECT* OUR_SIDE_TANK::getObject()
 	return this->tank.getObject();
 }
 
+void OUR_SIDE_TANK::setDestoryStatus()
+{
+	this->tank.setDestoryStatus();
+}
+
+bool OUR_SIDE_TANK::isDisapperStatus()
+{
+	return tank.isDisapperStatus();
+}
+
 bool OUR_SIDE_TANK::canAttack()
 {
 	return this->tank.canAttack();
+}
+
+bool OUR_SIDE_TANK::isNormal()
+{
+	return tank.isNormal();
 }
 
 void OUR_SIDE_TANK::setAttackTime(int time)
