@@ -3,6 +3,7 @@
 #include"manager/tankmanger.h"
 #include"manager/bulletmanager.h"
 #include"manager/boxmanager.h"
+#include"scene/title.h"
 
 struct SCENE
 {
@@ -10,6 +11,7 @@ struct SCENE
 	TANK_MANAGER tm;
 	BULLET_MANAGER bum;
 	BOX_MANAGER boxm;
+	TITLE title;
 	int run();
 	void init();
 	void end();

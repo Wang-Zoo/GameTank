@@ -68,8 +68,10 @@ void Output::Begin()
 	memset(ColorStr, 0, colorfulSize);
 }
 
-void Output::DrawPic(const char* key, int x, int y)
+void Output::DrawPic(const char* key, int x, int y, bool needTitle)
 {
+	if(needTitle)
+		y += TITLE_HEIGHT;
 	if (key == 0)
 		return;
 	std::map<const char*, PIC>::iterator it;
@@ -272,4 +274,9 @@ const char* OutputUnitInfo::getTsc()
 
 int OutputUnitInfo::getLength() {
 	return length;
+}
+
+void Output::popBack(const char * key)
+{
+	PicMap.erase(key);
 }

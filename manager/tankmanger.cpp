@@ -77,11 +77,12 @@ bool TANK_MANAGER::collisionTank(OBJECT* object, int dir)
 	return false;
 }
 
-void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum, BOX_MANAGER* boxm)
+void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum, BOX_MANAGER* boxm, TITLE* title)
 {
 	this->bm = bm;
 	this->bulletm = bum;
 	this->boxm = boxm;
+	this->title = title;
 	{
 		PIC pic;
 		char buf[TANK_WIDTH * TANK_HEIGHT] = {
@@ -174,6 +175,8 @@ void TANK_MANAGER::addBullet(OBJECT object,int dir,bool canAttack,bool isEnemy)
 
 int TANK_MANAGER::run()
 {
+	int size = enemyVector.size();
+	title->setEnemyNum(size);
 	std::vector<TANK>::iterator enemyIt = this->enemyVector.begin();
 	if (enemyIt == enemyVector.end()) {
 		return ACTION_NEXT;

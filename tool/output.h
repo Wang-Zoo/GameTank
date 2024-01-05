@@ -44,7 +44,7 @@ private:
 	char* ColorStr = 0;	//œ‘ æ«¯”Ú
 public:
 	void Begin();
-	void DrawPic(const char* key, int x, int y);
+	void DrawPic(const char* key, int x, int y,bool needTitle = true);
 	void End();
 
 	void addInfo(const char* ts, const char* tsc, int length);
@@ -56,6 +56,7 @@ public:
 	int GetH();
 	int GetCX();
 	int GetCY();
+	void popBack(const char* key);
 };
 
 extern Output g_op;

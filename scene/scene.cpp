@@ -10,6 +10,7 @@ int SCENE::run()
 	bum.run();
 	bm.run();
 	boxm.run();
+	title.run();
 	return ACTION_NONE;
 }
 
@@ -27,13 +28,26 @@ void SCENE::init()
 	g_op.addInfo("¡ø", "\033[32m", 5);
 	g_op.addInfo("¡ù", "\033[32m", 5);
 	g_op.addInfo("©I", "\033[36m", 5);
-	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
+	g_op.addInfo("µÐ", "\033[36m", 5);
+	g_op.addInfo("ÈË", "\033[36m", 5);
+	g_op.addInfo("¡ú", "\033[36m", 5);
+	g_op.addInfo("__", "\033[36m", 5);
+	g_op.addInfo("xx", "\033[36m", 5);
+	g_op.addInfo("01", "\033[36m", 5);
+	g_op.addInfo("02", "\033[36m", 5);
+	g_op.addInfo("03", "\033[36m", 5);
+	g_op.addInfo("04", "\033[36m", 5);
+	g_op.addInfo("05", "\033[36m", 5);
+	g_op.addInfo("06", "\033[36m", 5);
+	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT+ TITLE_HEIGHT);
 	g_op.SetClientPos(0, 0);
 
 	bm.init();
 	bum.init(&bm);
 	boxm.init();
-	tm.init(&bm,&bum,&boxm);
+	tm.init(&bm,&bum,&boxm,&title);
+	title.init();
+
 }
 
 void SCENE::end()
