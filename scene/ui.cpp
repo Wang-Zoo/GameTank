@@ -97,12 +97,15 @@ void UI_STAGE_ONE::init()
 		til.SetPic(buf, 5, 1);
 		g_op.AddPic("stage", til);
 	}
+	lastTime = GetTickCount64();
 }
 
 int UI_STAGE_ONE::run()
 {
 	g_op.DrawPic("stage", 15, 17);
-	if (GetAsyncKeyState(VK_RETURN))
+
+	unsigned long long curTime = GetTickCount64();
+	if (GetAsyncKeyState(VK_RETURN)&&  (curTime - lastTime >500) )
 	{
 		return ACTION_NEXT;
 	}
