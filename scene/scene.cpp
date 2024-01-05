@@ -7,8 +7,8 @@ int SCENE::run()
 	if (tm.run() != ACTION_NONE) {
 		return ACTION_EXIT;
 	}
-	bm.run();
 	bum.run();
+	bm.run();
 	return ACTION_NONE;
 }
 
