@@ -107,6 +107,16 @@ void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
 		pic.SetPic(buf, TANK_WIDTH, TANK_HEIGHT);
 		g_op.AddPic(TANK_PIC_RIGHT, pic);
 	}
+	{
+		PIC pic;
+		char buf[TANK_WIDTH * TANK_HEIGHT] = {
+			8,8,8,
+			8,8,8,
+			8,8,8
+		};
+		pic.SetPic(buf, TANK_WIDTH, TANK_HEIGHT);
+		g_op.AddPic(TANK_DESTORY, pic);
+	}
 	add(true,3,0);
 	add(true,9,0);
 	add(true,15,0);
@@ -158,13 +168,21 @@ int TANK_MANAGER::run()
 	{
 		TANK& tempTank = *enemyIt;
 		OBJECT& tempObject = *tempTank.getObject();
-		if (bulletm->collision(&tempObject, tempTank.getDir(), true)) {
-			enemyIt = enemyVector.erase(enemyIt);
-			continue;
+		if (tempTank.isNormal()) {
+			if (bulletm->collision(&tempObject, tempTank.getDir(), true)) {
+				tempTank.setDestoryStatus();
+				continue;
+			}
+			aiMove(&tempTank);
+			addBullet(tempObject, tempTank.getDir(), tempTank.canAttack(), true);
 		}
-		aiMove(&tempTank);
-		addBullet(tempObject, tempTank.getDir(), tempTank.canAttack(),true);
-		tempTank.run();
+		else {
+			if (tempTank.isDisapperStatus()) {
+				enemyIt = enemyVector.erase(enemyIt);
+				continue;
+			}
+		}
+		tempTank.run();  
 		enemyIt++;
 	}
 
@@ -177,14 +195,22 @@ int TANK_MANAGER::run()
 		{
 			OUR_SIDE_TANK& tempTank = *ourSizeIt;
 			OBJECT& tempObject = *tempTank.getObject();
-			tempTank.keyboardMove();
-			if (bulletm->collision(&tempObject, tempTank.getDir(), false)) {
-				ourSizeIt = ourSideVector.erase(ourSizeIt);
-				continue;
+			if (tempTank.isNormal()) {
+				tempTank.keyboardMove();
+				if (bulletm->collision(&tempObject, tempTank.getDir(), false)) {
+					tempTank.setDestoryStatus();
+					continue;
+				}
+				if (GetAsyncKeyState('K') & 0x8000)
+					addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack(), false);
+				collisionBarries(tempTank.getObject(), tempTank.getDir(), false);
 			}
-			if (GetAsyncKeyState('K') & 0x8000)
-				addBullet((*tempTank.getObject()), tempTank.getDir(), tempTank.canAttack(), false);
-			collisionBarries(tempTank.getObject(), tempTank.getDir(), false);
+			else {
+				if (tempTank.isDisapperStatus()) {
+					ourSizeIt = ourSideVector.erase(ourSizeIt);
+					continue;
+				}
+			}
 			tempTank.run();
 			ourSizeIt++;
 		}

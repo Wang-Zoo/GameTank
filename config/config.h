@@ -23,6 +23,8 @@
 #define TANK_PIC_LEFT "TANK_LEFT"
 #define TANK_PIC_RIGHT "TANK_RIGHT"
 
+#define TANK_DESTORY "TANK_DESTORY"
+
 #define BARRIES_BRICK "B_BRICK" //砖块，可摧毁
 #define BARRIES_IRON "B_IRON" //铁块，不可摧毁
 #define BARRIES_TREE "B_TREE" //树丛，不可摧毁，可通过，被隐藏
