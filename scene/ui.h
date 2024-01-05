@@ -15,6 +15,8 @@ public:
 	void end();
 };
 struct UI_STAGE_ONE {
+private:
+	unsigned long long lastTime = 0l;
 public:
 	void init();
 	int run();
