@@ -15,7 +15,7 @@ int SCENE::run()
 void SCENE::init()
 {
 	//						0 1 2 3 4 5 6 7
-	//const char* tempTs = "  ¡¬¡ñ£½¡þ¡ï¡õ¨ˆ";
+	//const char* tempTs = "  ¡¬¡ñ£½¡þ¡ï¡õ¡ø";
 	g_op.addInfo("  ", "", 0);
 	g_op.addInfo("¡¬", "\033[31m", 5);
 	g_op.addInfo("¡ñ", "\033[32m", 5);
@@ -23,7 +23,7 @@ void SCENE::init()
 	g_op.addInfo("¡þ", "\033[33m", 5);
 	g_op.addInfo("¡ï", "\033[31m", 5);
 	g_op.addInfo("¡õ", "\033[34m", 5);
-	g_op.addInfo("¨ˆ", "\033[32m", 5);
+	g_op.addInfo("¡ø", "\033[32m", 5);
 	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
 	g_op.SetClientPos(0, 0);
 
