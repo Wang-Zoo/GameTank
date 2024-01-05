@@ -18,6 +18,20 @@ bool TANK_MANAGER::collisionBarries(TANK* tank, int dir, bool isEnemy)
 
 bool TANK_MANAGER::collisionBarries(OBJECT* tank, int dir,bool isEnemy)
 {
+	int boxType = BOX_NONE;
+	if (!isEnemy&& (boxType=boxm->collision(*tank, dir))!=BOX_NONE) {
+		switch (boxType)
+		{
+		case BOX_ALL_DESTORY_TYPE:
+			std::vector<TANK>::iterator enemyIt = this->enemyVector.begin();
+			for (;enemyIt!=enemyVector.end();)
+			{
+				(*enemyIt).setDestoryStatus();
+				enemyIt++;
+			}
+			break;
+		}
+	}
 	if (bm->collision(tank, dir)) {
 		return true;
 	}
@@ -63,10 +77,11 @@ bool TANK_MANAGER::collisionTank(OBJECT* object, int dir)
 	return false;
 }
 
-void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum)
+void TANK_MANAGER::init(BARRIES_MANAGER* bm, BULLET_MANAGER* bum, BOX_MANAGER* boxm)
 {
 	this->bm = bm;
 	this->bulletm = bum;
+	this->boxm = boxm;
 	{
 		PIC pic;
 		char buf[TANK_WIDTH * TANK_HEIGHT] = {
@@ -170,6 +185,7 @@ int TANK_MANAGER::run()
 		OBJECT& tempObject = *tempTank.getObject();
 		if (tempTank.isNormal()) {
 			if (bulletm->collision(&tempObject, tempTank.getDir(), true)) {
+				this->boxm->add();
 				tempTank.setDestoryStatus();
 				continue;
 			}

@@ -65,6 +65,12 @@
     <ClCompile Include="scene\ui.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="object\box.cpp">
+      <Filter>src\object</Filter>
+    </ClCompile>
+    <ClCompile Include="manager\boxmanager.cpp">
+      <Filter>src\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\base.h">
@@ -105,6 +111,12 @@
     </ClInclude>
     <ClInclude Include="scene\ui.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="object\box.h">
+      <Filter>src\object</Filter>
+    </ClInclude>
+    <ClInclude Include="manager\boxmanager.h">
+      <Filter>src\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
