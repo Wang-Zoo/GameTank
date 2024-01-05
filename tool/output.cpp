@@ -151,7 +151,7 @@ void Output::End()
 	for (int originIndex = 0; ClientStr[originIndex]; originIndex++)
 	{
 		char& temp = ClientStr[originIndex];
-		if (temp == 32||temp == '\n') {
+		if (temp == 32||temp == '\n' || temp == '_') {
 			ColorStr[flowIndex] = temp;
 			flowIndex++;
 			continue;
