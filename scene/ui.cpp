@@ -61,10 +61,10 @@ void UI_START::init()
 
 int UI_START::run()
 {
-	g_op.DrawPic("fly", 0, 10);
-	g_op.DrawPic("start", 15, 17);
-	g_op.DrawPic("exit", 15, 19);
-	g_op.DrawPic("jt", 13, ay);
+	g_op.DrawPic("fly", 0, 10,false);
+	g_op.DrawPic("start", 15, 17,false);
+	g_op.DrawPic("exit", 15, 19, false);
+	g_op.DrawPic("jt", 13, ay, false);
 
 	if (GetAsyncKeyState('W') & 1 || GetAsyncKeyState('S') & 1)
 	{
@@ -102,7 +102,7 @@ void UI_STAGE_ONE::init()
 
 int UI_STAGE_ONE::run()
 {
-	g_op.DrawPic("stage", 15, 17);
+	g_op.DrawPic("stage", 15, 17, false);
 
 	unsigned long long curTime = GetTickCount64();
 	if (GetAsyncKeyState(VK_RETURN)&&  (curTime - lastTime >500) )
@@ -175,7 +175,7 @@ void UI_END::init()
 
 int UI_END::run()
 {
-	g_op.DrawPic("stage", 15, 17);
+	g_op.DrawPic("stage", 15, 17, false);
 	if (GetAsyncKeyState(VK_RETURN))
 	{
 		return ACTION_NEXT;

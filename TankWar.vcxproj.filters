@@ -71,6 +71,9 @@
     <ClCompile Include="manager\boxmanager.cpp">
       <Filter>src\manager</Filter>
     </ClCompile>
+    <ClCompile Include="scene\title.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object\base.h">
@@ -117,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="manager\boxmanager.h">
       <Filter>src\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\title.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

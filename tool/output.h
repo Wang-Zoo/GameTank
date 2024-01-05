@@ -28,7 +28,7 @@ private:
 	const char* ts = 0;		//Í¼ËØ¼ÇÂ¼
 public:
 	void Begin();
-	void DrawPic(const char* key, int x, int y);
+	void DrawPic(const char* key, int x, int y,bool needTitle = true);
 	void End();
 
 	void SetTs(const char* ts);
@@ -40,6 +40,7 @@ public:
 	int GetH();
 	int GetCX();
 	int GetCY();
+	void popBack(const char* key);
 };
 
 extern Output g_op;

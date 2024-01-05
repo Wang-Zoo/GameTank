@@ -10,19 +10,22 @@ int SCENE::run()
 	bum.run();
 	bm.run();
 	boxm.run();
+	title.run();
 	return ACTION_NONE;
 }
 
 void SCENE::init()
 {
-	//     0 1 2 3 4 5 6 7
-	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT);
+	//			0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9
+	g_op.SetClientWH(MAP_WIDTH, MAP_HEIGHT+ TITLE_HEIGHT);
 	g_op.SetClientPos(0, 0);
-	g_op.SetTs("  ¡¬¡ñ£½¡þ¡ï¡õ¡ø¡ù©I");
+	g_op.SetTs("  ¡¬¡ñ£½¡þ¡ï¡õ¡ø¡ù©IµÐÈË¡ú__00010203040506");
 	bm.init();
 	bum.init(&bm);
 	boxm.init();
-	tm.init(&bm,&bum,&boxm);
+	tm.init(&bm,&bum,&boxm,&title);
+	title.init();
+
 }
 
 void SCENE::end()

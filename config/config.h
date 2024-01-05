@@ -5,6 +5,8 @@
 #define TANK_WIDTH 3
 #define TANK_HEIGHT 3
 
+#define TITLE_HEIGHT 5
+
 #define BOX_WIDTH 3
 #define BOX_HEIGHT 3
 
@@ -21,6 +23,9 @@
 #define TANK_DIR_DOWN 1
 #define TANK_DIR_LEFT 2
 #define TANK_DIR_RIGHT 3
+
+#define TITLE_TYPE "TITLE"
+#define TITLE_BOTTOM_TYPE "TITLE_BOTTOM"
 
 #define TANK_PIC_UP "TANK_UP"
 #define TANK_PIC_DOWN "TANK_DOWN"
